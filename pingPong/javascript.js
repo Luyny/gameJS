@@ -1,13 +1,13 @@
 // Declarando as variáveis
 var canvas
 var canvasContext
-var ballX = 50
-var ballY = 50
+var ballX = 100
+var ballY = 100
 var ballSpeedX = 20
 var ballSpeedY = 4
 var paddle1Y = 250
 var paddle2Y = 250
-var stopped = false
+var stopped = true
 var player1Score = 0
 var player2Score = 0
 const PADDLE_HEIGHT = 100
@@ -39,7 +39,11 @@ window.onload = () => {
     canvas = document.getElementById('gameCanvas')
     h = canvas.height
     w = canvas.width
+    ballX = w/2
+    ballY = h/2
+
     canvasContext = canvas.getContext('2d')
+    canvasContext.font = '30px serif'
     let fps = 30
     // Game RUNTIME
     setInterval(() => computerMovement(5),500/fps)
@@ -120,12 +124,12 @@ function drawEverything() {
     if (stopped) {
         canvasContext.fillStyle = 'white'
         if (player1Score >= WINNING_SCORE) {
-            canvasContext.fillText("Left player WON !", w / 2, h / 2)
+            canvasContext.fillText("Left player WON !", w / 2 - 105, h / 2)
         }
         else if (player2Score >= WINNING_SCORE) {
-            canvasContext.fillText("Right player WON !", w / 2, h / 2)
+            canvasContext.fillText("Right player WON !", w / 2 - 105, h / 2)
         }
-        canvasContext.fillText("Click to start a new game", w / 2, 200)
+        canvasContext.fillText("Click to start a new game", w / 2 - 150, 200)
         return;
     }
     drawNet()
